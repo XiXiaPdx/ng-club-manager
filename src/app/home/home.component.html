@@ -1,0 +1,7 @@
+<p>
+  home works!
+  <a class="waves-effect waves-light btn-large">Button</a>
+</p>
+
+<h3 *ngFor="let person of allPeople" (click)="goToDetails(person)"> {{person.name}} </h3>
+<h1 routerLink="about"> Go to about </h1>
