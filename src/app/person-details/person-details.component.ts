@@ -3,6 +3,8 @@ import {People} from '../people.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import {ChangePeopleService} from '../change-people.service';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-person-details',
@@ -13,7 +15,9 @@ export class PersonDetailsComponent implements OnInit {
   person: People;
   name: string;
   databaseID: string;
-  constructor(private peopleService: ChangePeopleService, private route: ActivatedRoute, private location: Location) { }
+  updatePersonForm: FormGroup;
+
+  constructor(private peopleService: ChangePeopleService, private route: ActivatedRoute, private location: Location, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.route.params.forEach((urlString)=>{
@@ -22,11 +26,20 @@ export class PersonDetailsComponent implements OnInit {
   });
     this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
       this.person = person;
+      });
+      this.updatePersonForm = this.fb.group({
+        name:'',
     });
   }
 
   deletePerson(personID){
     this.peopleService.deletePersonByID(personID);
+  }
+
+  updatePerson(){
+    var updatedPerson: People = new People(this.updatePersonForm.value.name);
+    this.peopleService.updatePerson(updatedPerson, this.databaseID);
+    this.updatePersonForm.reset();
   }
 
 }

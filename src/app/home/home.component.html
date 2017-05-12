@@ -3,19 +3,19 @@
   <a class="waves-effect waves-light btn-large">Button</a>
 </p>
 
-<h3 *ngFor="let person of allPeople" (click)="goToDetails(person)"> {{person.name}}
-<p> ID: {{person.$key}} </p></h3>
+<h3 *ngFor="let person of allPeople" (click)="goToDetails(person)"> {{person?.name}}
+<p> ID: {{person?.$key}} </p></h3>
 
 
-<form [formGroup]="newPersonForm">
+<form novalidate [formGroup]="newPersonForm" (ngSubmit)="addPerson()">
 <div layout="row" layout-margin layout-align="space-between center">
   <!-- <md-input-container flex> -->
-    <input flex="50" type="text" mdInput placeholder="name" formControlName="name">
+    <input flex="50" type="text"  placeholder="name" formControlName="name" required>
   <!-- </md-input-container> -->
 </div>
 
 <div layout="row" layout-margin layout-align="center center">
-  <button flex='70' md-raised-button color="accent" class="text-upper" (click)="addPerson()">Add New Person</button>
+  <button flex='70' md-raised-button color="accent" class="text-upper" type="submit" >Add New Person</button>
 </div>
 </form>
 

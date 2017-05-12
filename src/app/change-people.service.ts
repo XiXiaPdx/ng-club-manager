@@ -29,4 +29,9 @@ export class ChangePeopleService {
     this.allPeople.push(newPerson);
   }
 
+  updatePerson(updatedPerson, personID){
+    var personToUpdate = this.getPersonByID(personID);
+    personToUpdate.update({name: updatedPerson.name});
+  }
+
 }

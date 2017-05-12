@@ -28,10 +28,8 @@ newPersonForm: FormGroup;
 
   addPerson(){
     var newPerson: People = new People(this.newPersonForm.value.name);
-    console.log(this.newPersonForm.value);
     this.peopleService.addPerson(newPerson);
     this.newPersonForm.reset();
-
   }
 
   goToDetails(people){
