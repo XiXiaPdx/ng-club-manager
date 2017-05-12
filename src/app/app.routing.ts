@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     component: AboutComponent
   },
   {
-    path:"people/:name",
+    path:"people/:name/:id",
     component: PersonDetailsComponent
   },
  ];

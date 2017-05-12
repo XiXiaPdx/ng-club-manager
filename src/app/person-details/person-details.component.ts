@@ -12,16 +12,17 @@ import {ChangePeopleService} from '../change-people.service';
 export class PersonDetailsComponent implements OnInit {
   person: People;
   name: string;
+  databaseID: string;
   constructor(private peopleService: ChangePeopleService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
     this.route.params.forEach((urlString)=>{
     this.name = (urlString ['name']);
-
+    this.databaseID = (urlString ['id']);
   });
-  console.log(this.name);
-    this.person = this.peopleService.getPersonByName(this.name);
-    console.log(this.person);
+    this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
+      this.person = person;
+    });
   }
 
 }

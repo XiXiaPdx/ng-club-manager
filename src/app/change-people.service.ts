@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
 import {People} from './people.model';
 import {ALLPEOPLE} from './all-people';
-
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 
 @Injectable()
 export class ChangePeopleService {
-  constructor() { }
+  allPeople: FirebaseListObservable <any []>;
+  person: FirebaseObjectObservable <any>;
+  constructor(private database: AngularFireDatabase) {
+    this.allPeople = database.list('allPeople');
+  }
 
   getAllPeople() {
-    return ALLPEOPLE;
+    return this.allPeople;
   }
 
-  getPersonByName(name){
-    for (var i = 0; i <= ALLPEOPLE.length-1; i++){
-      if (ALLPEOPLE[i].name === name){
-        return ALLPEOPLE[i];
-      }
-    }
+  getPersonByID(personID){
+  this.person = this.database.object('allPeople/'+personID);
+  return this.person;
   }
+
+  // getPersonByName(name){
+  //   for (var i = 0; i <= ALLPEOPLE.length-1; i++){
+  //     if (ALLPEOPLE[i].name === name){
+  //       return ALLPEOPLE[i];
+  //     }
+  //   }
+  // }
 
 }

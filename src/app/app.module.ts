@@ -7,11 +7,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterializeModule } from 'angular2-materialize';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
+import { AngularFireModule} from 'angularfire2';
+import {masterFirebaseConfig} from './api-keys';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import {ChangePeopleService} from './change-people.service';
 import { PersonDetailsComponent } from './person-details/person-details.component';
 
+export const firebaseConfig = {
+  apiKey: masterFirebaseConfig.apiKey,
+  authDomain: masterFirebaseConfig.authDomain,
+  databaseURL: masterFirebaseConfig.databaseURL,
+  storageBucket: masterFirebaseConfig.storageBucket
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +36,9 @@ BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     MaterializeModule,
-    routing
+    routing,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [ChangePeopleService],
   bootstrap: [AppComponent]
