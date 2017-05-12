@@ -20,6 +20,11 @@ export class ChangePeopleService {
   return this.person;
   }
 
+  deletePersonByID (personID){
+    var personToDelete = this.getPersonByID(personID);
+    personToDelete.remove();
+  }
+
   // getPersonByName(name){
   //   for (var i = 0; i <= ALLPEOPLE.length-1; i++){
   //     if (ALLPEOPLE[i].name === name){

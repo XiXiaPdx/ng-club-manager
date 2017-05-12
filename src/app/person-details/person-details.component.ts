@@ -25,4 +25,8 @@ export class PersonDetailsComponent implements OnInit {
     });
   }
 
+  deletePerson(personID){
+    this.peopleService.deletePersonByID(personID);
+  }
+
 }
