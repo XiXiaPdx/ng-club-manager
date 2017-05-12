@@ -4,6 +4,8 @@ import {ChangePeopleService} from '../change-people.service';
 import {Router} from '@angular/router';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {FirebaseObjectObservable} from 'angularfire2/database';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
@@ -12,12 +14,24 @@ import {FirebaseObjectObservable} from 'angularfire2/database';
 })
 export class HomeComponent implements OnInit {
 allPeople: People [];
-  constructor(private peopleService: ChangePeopleService, private router: Router) { }
+newPersonForm: FormGroup;
+  constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.peopleService.getAllPeople().subscribe((allPeople)=>{
       this.allPeople = allPeople;
-    })
+    });
+    this.newPersonForm = this.fb.group({
+      name:'',
+    });
+  }
+
+  addPerson(){
+    var newPerson: People = new People(this.newPersonForm.value.name);
+    console.log(this.newPersonForm.value);
+    this.peopleService.addPerson(newPerson);
+    this.newPersonForm.reset();
+
   }
 
   goToDetails(people){

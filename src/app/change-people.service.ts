@@ -25,12 +25,8 @@ export class ChangePeopleService {
     personToDelete.remove();
   }
 
-  // getPersonByName(name){
-  //   for (var i = 0; i <= ALLPEOPLE.length-1; i++){
-  //     if (ALLPEOPLE[i].name === name){
-  //       return ALLPEOPLE[i];
-  //     }
-  //   }
-  // }
+  addPerson (newPerson){
+    this.allPeople.push(newPerson);
+  }
 
 }
