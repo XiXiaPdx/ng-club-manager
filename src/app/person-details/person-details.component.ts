@@ -15,7 +15,6 @@ export class PersonDetailsComponent implements OnInit {
   person: People;
   name: string;
   databaseID: string;
-  updatePersonForm: FormGroup;
 
   constructor(private peopleService: ChangePeopleService, private route: ActivatedRoute, private location: Location, private fb: FormBuilder) { }
 
@@ -27,19 +26,10 @@ export class PersonDetailsComponent implements OnInit {
     this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
       this.person = person;
       });
-      this.updatePersonForm = this.fb.group({
-        name:'',
-    });
   }
 
   deletePerson(personID){
     this.peopleService.deletePersonByID(personID);
-  }
-
-  updatePerson(){
-    var updatedPerson: People = new People(this.updatePersonForm.value.name);
-    this.peopleService.updatePerson(updatedPerson, this.databaseID);
-    this.updatePersonForm.reset();
   }
 
 }

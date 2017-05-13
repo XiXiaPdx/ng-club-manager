@@ -1,0 +1,11 @@
+<form novalidate [formGroup]="updatePersonForm" (ngSubmit)="updatePerson()">
+<div layout="row" layout-margin layout-align="space-between center">
+  <!-- <md-input-container flex> -->
+    <input flex="50" [class]="nameFieldWarning()" type="text" formControlName="name" required>
+  <!-- </md-input-container> -->
+</div>
+
+<div layout="row" layout-margin layout-align="center center">
+  <button type = "submit" flex='70' md-raised-button color="accent" class="text-upper">Update</button>
+</div>
+</form>

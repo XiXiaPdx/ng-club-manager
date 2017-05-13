@@ -23,7 +23,6 @@ constructor(private peopleService: ChangePeopleService, private fb: FormBuilder,
 
   checkHasLetters(formField: FormControl){
     if (formField.value !== null){
-    console.log(formField.value[0]);
      return /^\S*$/.test(formField.value) ? null : { notA: true };
       }
     }
