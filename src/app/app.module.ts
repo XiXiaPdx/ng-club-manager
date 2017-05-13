@@ -14,6 +14,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import {ChangePeopleService} from './change-people.service';
 import { PersonDetailsComponent } from './person-details/person-details.component';
+import { AddNewComponent } from './add-new/add-new.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -27,7 +28,8 @@ export const firebaseConfig = {
     AppComponent,
     AboutComponent,
     HomeComponent,
-    PersonDetailsComponent
+    PersonDetailsComponent,
+    AddNewComponent
   ],
   imports: [
     CovalentCoreModule,
