@@ -21,7 +21,7 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 export class HomeComponent implements OnInit {
 allPeople: People [];
 newPersonForm: FormGroup;
-isblank: boolean = true;
+isBlank: string;
   constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
 
@@ -32,27 +32,20 @@ isblank: boolean = true;
     this.newPersonForm = this.fb.group({
       name: ['', Validators.required],
 
-    }, {validator: this.notblank});
+    });
     // this.newPersonForm.patchValue({
     //   name: 'haha',
     // })
   }
 
-notblank(ac: AbstractControl){
-    console.log(ac.get('name').dirty);
-      if (ac.get('name').dirty){
-        return ac.get('name').value !==''? null : {'isblank': true};
-      }
-  }
+
 
 
   addPerson(){
-    if (this.notblank === null){
+    if (this.newPersonForm.get('name').status === 'VALID'){
     var newPerson: People = new People(this.newPersonForm.value.name);
     this.peopleService.addPerson(newPerson);
     this.newPersonForm.reset();
-  } else {
-    console.log("Please enter a name");
   }
   }
 
