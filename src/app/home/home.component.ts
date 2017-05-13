@@ -37,7 +37,7 @@ newPersonForm: FormGroup;
   checkHasLetters(formField: FormControl){
     if (formField.value !== null){
     console.log(formField.value[0]);
-     return /^\w+$/.test(formField.value) ? null : { notA: true };
+     return /^\S*$/.test(formField.value) ? null : { notA: true };
       }
     }
 
@@ -46,9 +46,6 @@ newPersonForm: FormGroup;
       return 'error';
     }
   }
-
-
-
 
   addPerson(){
     if (this.newPersonForm.get('name').status === 'VALID'){
