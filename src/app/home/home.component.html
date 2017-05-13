@@ -10,7 +10,7 @@
 <form novalidate [formGroup]="newPersonForm" (ngSubmit)="addPerson()">
 <div layout="row" layout-margin layout-align="space-between center" >
   <!-- <md-input-container flex> -->
-    <input flex="50" type="text" placeholder="name" formControlName="name" [class]="" required>
+    <input flex="50" type="text" placeholder="name" formControlName="name" [class]="nameFieldWarning()" required>
   <!-- </md-input-container> -->
 </div>
 <h3> form group value {{this.newPersonForm?.value | json}}</h3>

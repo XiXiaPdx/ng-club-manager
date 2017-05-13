@@ -21,7 +21,6 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 export class HomeComponent implements OnInit {
 allPeople: People [];
 newPersonForm: FormGroup;
-isBlank: string;
   constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
 
@@ -30,12 +29,22 @@ isBlank: string;
       this.allPeople = allPeople;
     });
     this.newPersonForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', Validators.compose([Validators.required, this.checkHasLetters])],
 
     });
-    // this.newPersonForm.patchValue({
-    //   name: 'haha',
-    // })
+  }
+
+  checkHasLetters(formField: FormControl){
+    if (formField.value !== null){
+    console.log(formField.value[0]);
+     return /^\w+$/.test(formField.value) ? null : { notA: true };
+      }
+    }
+
+  nameFieldWarning (){
+    if( this.newPersonForm.get('name').status !== 'VALID' && this.newPersonForm.get('name').dirty){
+      return 'error';
+    }
   }
 
 
@@ -46,6 +55,9 @@ isBlank: string;
     var newPerson: People = new People(this.newPersonForm.value.name);
     this.peopleService.addPerson(newPerson);
     this.newPersonForm.reset();
+  } else {
+    this.newPersonForm.get('name').markAsDirty();
+    this.nameFieldWarning();
   }
   }
 
