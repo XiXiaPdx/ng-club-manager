@@ -13,14 +13,12 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class PersonDetailsComponent implements OnInit {
   person: People;
-  name: string;
   databaseID: string;
 
   constructor(private peopleService: ChangePeopleService, private route: ActivatedRoute, private location: Location, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.route.params.forEach((urlString)=>{
-    this.name = (urlString ['name']);
     this.databaseID = (urlString ['id']);
   });
     this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
@@ -30,6 +28,10 @@ export class PersonDetailsComponent implements OnInit {
 
   deletePerson(personID){
     this.peopleService.deletePersonByID(personID);
+  }
+
+  updateDetailDisplay(person){
+    this.person = person;
   }
 
 }

@@ -3,4 +3,4 @@
 </h1>
 
 <button class="btn" (click)="deletePerson(person.$key)"> Delete Me </button>
-<app-update [databaseID]="databaseID" [person]="person"></app-update>
+<app-update [databaseID]="databaseID" [person]="person" (personSent)="updateDetailDisplay($event)"></app-update>

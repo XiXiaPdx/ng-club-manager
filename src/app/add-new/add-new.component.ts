@@ -13,11 +13,13 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 })
 export class AddNewComponent implements OnInit {
   newPersonForm: FormGroup;
+  newPerson: People;
 
 constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
   ngOnInit() {
     this.newPersonForm = this.fb.group({
       name: ['', Validators.compose([Validators.required, this.checkHasLetters])],
+      attendance: ['', Validators.required]
     });
   }
 
@@ -35,8 +37,8 @@ constructor(private peopleService: ChangePeopleService, private fb: FormBuilder,
 
   addPerson(){
     if (this.newPersonForm.get('name').status === 'VALID'){
-    var newPerson: People = new People(this.newPersonForm.value.name);
-    this.peopleService.addPerson(newPerson);
+    this.newPerson = this.newPersonForm.value;
+    this.peopleService.addPerson(this.newPerson);
     this.newPersonForm.reset();
   } else {
     this.newPersonForm.get('name').markAsDirty();

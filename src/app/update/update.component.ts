@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {People} from '../people.model';
 import {ChangePeopleService} from '../change-people.service';
 import {Router} from '@angular/router';
@@ -15,15 +15,21 @@ export class UpdateComponent implements OnInit {
   updatePersonForm: FormGroup;
   @Input () databaseID: string;
   @Input () person: People;
+  @Output () personSent = new EventEmitter();
+  events: object []=[];
+  updatedPerson: People;
 
   constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+  this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
+    this.person = person;
+    this.updatePersonForm.patchValue({name: this.person.name});
+    });
     this.updatePersonForm = this.fb.group({
       name:['', Validators.compose([Validators.required, this.checkHasLetters])],
   });
-  this.updatePersonForm.patchValue({name: this.person.name});
-
+  this.subcribeToUpdateFormChanges()
   }
 
   checkHasLetters(formField: FormControl){
@@ -38,10 +44,21 @@ export class UpdateComponent implements OnInit {
     }
   }
 
+  subcribeToUpdateFormChanges() {
+    // initialize stream
+    const updateFormValueChanges$ = this.updatePersonForm.valueChanges;
+    // subscribe to the stream
+    updateFormValueChanges$.subscribe((x) =>{
+      this.events.push({ event: 'STATUS CHANGED', object: x })
+      this.personSent.emit(x);
+    })
+  }
+
+
   updatePerson(){
     if (this.updatePersonForm.get('name').status === 'VALID'){
-      var updatedPerson: People = new People(this.updatePersonForm.value.name);
-      this.peopleService.updatePerson(updatedPerson, this.databaseID);
+      this.updatedPerson=this.updatePersonForm.value;
+      this.peopleService.updatePerson(this.updatedPerson, this.databaseID);
       this.updatePersonForm.reset();
     } else {
       this.updatePersonForm.get('name').markAsDirty();

@@ -9,3 +9,8 @@
   <button type = "submit" flex='70' md-raised-button color="accent" class="text-upper">Update</button>
 </div>
 </form>
+
+Form changes:
+<div *ngFor="let event of events">
+    <pre> {{ event | json }} </pre>
+</div>
