@@ -1,7 +1,8 @@
 <form novalidate [formGroup]="updatePersonForm" (ngSubmit)="updatePerson()">
-<div layout="row" layout-margin layout-align="space-between center">
+<div flex-container>
   <!-- <md-input-container flex> -->
-    <input flex="50" [class]="nameFieldWarning()" type="text" formControlName="name" required>
+    <input flex="30" [class]="nameFieldWarning()" type="text" formControlName="name" required>
+    <input flex="30" type="number" formControlName="attendance" placeholder="number between 1 and 100" required>
   <!-- </md-input-container> -->
 </div>
 
@@ -9,8 +10,3 @@
   <button type = "submit" flex='70' md-raised-button color="accent" class="text-upper">Update</button>
 </div>
 </form>
-
-Form changes:
-<div *ngFor="let event of events">
-    <pre> {{ event | json }} </pre>
-</div>

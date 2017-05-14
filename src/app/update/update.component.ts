@@ -28,6 +28,7 @@ export class UpdateComponent implements OnInit {
     });
     this.updatePersonForm = this.fb.group({
       name:['', Validators.compose([Validators.required, this.checkHasLetters])],
+      attendance:['', Validators.required],
   });
   this.subcribeToUpdateFormChanges()
   if (this.person !== undefined){
@@ -60,13 +61,14 @@ export class UpdateComponent implements OnInit {
 
 
   updatePerson(){
-    if (this.updatePersonForm.get('name').status === 'VALID'){
+    if (this.updatePersonForm.status === 'VALID'){
       this.updatedPerson=this.updatePersonForm.value;
+      console.log(this.updatedPerson);
       this.peopleService.updatePerson(this.updatedPerson, this.databaseID);
       this.updatePersonForm.reset();
+      this.router.navigate([""]);
     } else {
       this.updatePersonForm.get('name').markAsDirty();
-      this.updatePersonForm.reset();
     }
   }
 

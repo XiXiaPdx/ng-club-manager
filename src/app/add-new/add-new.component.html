@@ -1,12 +1,10 @@
 <form novalidate [formGroup]="newPersonForm" (ngSubmit)="addPerson()">
-<div layout="row" layout-margin layout-align="space-between center" >
-    <input flex="50" type="text" placeholder="name" formControlName="name" [class]="nameFieldWarning()" required><h6 *ngIf="nameFieldWarning()"> Name required, no spaces please </h6>
+<div flex-container>
+    <input  flex="30" type="text" placeholder="First Name" formControlName="name" [class]="nameFieldWarning()" required><h4 *ngIf="nameFieldWarning()"> Name required, no spaces please </h4>
+    <input  flex ="30" type="number" min="0" max="100" step="1" placeholder="attendance percentage" formControlName="attendance"  required>
+    <div class="input-field" flex="30">
+  </div>
 </div>
-
-<h3> form group value {{this.newPersonForm?.value | json}}</h3>
-<h3> status of form group {{this.newPersonForm.status}}</h3>
-<h3>status of name control in form group {{this.newPersonForm.get('name')?.status}}</h3>
-
 <div layout="row" layout-margin layout-align="center center">
   <button flex='70' md-raised-button color="accent" class="text-upper" type="submit" >Add New Person</button>
 </div>

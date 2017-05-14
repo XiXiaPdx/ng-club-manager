@@ -31,7 +31,8 @@ export class ChangePeopleService {
 
   updatePerson(updatedPerson, personID){
     var personToUpdate = this.getPersonByID(personID);
-    personToUpdate.update({name: updatedPerson.name});
+    console.log("inside", updatedPerson);
+    personToUpdate.update({name: updatedPerson.name, attendance: updatedPerson.attendance});
   }
 
 }

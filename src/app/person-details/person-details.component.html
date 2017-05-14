@@ -1,6 +1,9 @@
 <h1>
-  You are {{person?.name}}
+  {{person?.name}}
 </h1>
+<h3> Attendance {{person?.attendance}}%</h3>
+<h3> Their ID: {{databaseID}}</h3>
 
-<button class="btn" (click)="deletePerson(person.$key)"> Delete Me </button>
-<app-update [databaseID]="databaseID" [person]="person" (personSent)="updateDetailDisplay($event)"></app-update>
+<button class="btn" (click)="deletePerson(databaseID)"> Delete Me </button>
+<button class="btn" (click)="updateDisplay=!updateDisplay">Toggle Update Form</button>
+<app-update *ngIf="updateDisplay" [databaseID]="databaseID" [person]="person" (personSent)="updateDetailDisplay($event)"></app-update>

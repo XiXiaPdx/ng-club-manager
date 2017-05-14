@@ -2,3 +2,8 @@ input.error{
   border-color: red;
   border-style: solid;
   }/* You can add global styles to this file, and also import other style files */
+
+#studentCards{
+  flex-direction: row;
+  display: inline-flex;
+}
