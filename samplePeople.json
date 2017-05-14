@@ -1,10 +1,12 @@
 {
   "allPeople": [
     {
-      "name": "Riley"
+      "name": "Sam",
+      "attendance": 90
     },
     {
-      "name": "Xia"
+      "name": "Sara",
+      "attendance": 95
     }
   ]
 }

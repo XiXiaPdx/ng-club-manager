@@ -4,7 +4,7 @@ import {ChangePeopleService} from '../change-people.service';
 import {Router} from '@angular/router';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {FirebaseObjectObservable} from 'angularfire2/database';
-import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update',
@@ -22,14 +22,18 @@ export class UpdateComponent implements OnInit {
   constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-  this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
+    this.peopleService.getPersonByID(this.databaseID).subscribe((person)=>{
     this.person = person;
-    this.updatePersonForm.patchValue({name: this.person.name});
+
     });
     this.updatePersonForm = this.fb.group({
       name:['', Validators.compose([Validators.required, this.checkHasLetters])],
   });
   this.subcribeToUpdateFormChanges()
+  if (this.person !== undefined){
+  this.updatePersonForm.patchValue({name: this.person.name});
+  }
+
   }
 
   checkHasLetters(formField: FormControl){
