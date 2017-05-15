@@ -1,28 +1,56 @@
-# Fun
+# Student Attendance
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
+This is an Angular 2 CLI web application for Epicodus code school Friday assignment.  
 
-## Development server
+## Planning
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This one went south pretty quickly. A lot to say about it. Summary, it didn't go well and there are tons of areas for improvement here.  Simply ran out of time and was not able to put it together.
 
-## Code scaffolding
+# Technologies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Angular 2, TypeScript, JavaScript, Jquery, HTML5, CSS
+ [Materialize](http://materializecss.com/) for front-end css frameworks.
 
-## Build
+## Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+You will need the following software properly installed on your computer.
 
-## Running unit tests
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/) (with NPM)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+Perform the following  steps at your terminal prompt
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+* #### Enter the following to download the app files.
+```
+git clone https://github.com/XiXiaPdx/ng-club-manager.git
+```
+*  #### get into the app folder
+```
+cd ng-club-manager
+```
+*  #### install node dependencies
+```
+npm install
+```
 
-## Further help
+* #### You need a Firebase account. Make an api-keys file to store your Firebase api.  Follow the directions at [this link](https://www.learnhowtoprogram.com/javascript/angular-extended/firebase-introduction-and-setup) to do that.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* #### initiate the local server
+```
+ng serve
+```
+
+* #### once it compiles, open a browser and go to http://localhost:4200/
+
+* #### Assuming your firebase starts out empty, start adding students.
+
+
+## Further Exploration
+
+So much. Learn Angular.
+
+## License
+
+Copyright (c) 2017 Xi Xia. This software is licensed under the MIT license.
