@@ -8,10 +8,10 @@
     <label> High End </label>
       <input flex="25" (change)="onHighInputChange(highEnd)" [(ngModel)]="highEnd" type="range" min="0" max="100" />
     </p>
-    <h6> High End Of Filter: {{high}} </h6>
-    <h6> Low End Of Filter: {{low}} </h6>
+    <h6> High End Of Filter: {{highEnd}} </h6>
+    <h6> Low End Of Filter: {{lowEnd}} </h6>
   <div class="col s12 flex-container" id="studentCards">
-    <div flex = "25" class="card blue-grey darken-1"  *ngFor="let person of (allPeople|filter:0:100)">
+    <div flex = "25" class="card blue-grey darken-1"  *ngFor="let person of (allPeople|filter:lowEnd:highEnd)">
       <div class="card-content white-text">
         <span class="card-title"><h3>{{person?.name}}</h3></span>
 

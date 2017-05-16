@@ -17,8 +17,8 @@ import { AbstractControl, FormBuilder, FormGroup, FormControl, Validators } from
 
 export class HomeComponent implements OnInit {
 allPeople: People[];
-high: number=50;
-low: number = 50;
+highEnd: number=75;
+lowEnd: number = 25;
   constructor(private peopleService: ChangePeopleService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -29,13 +29,19 @@ low: number = 50;
   }
 
   onHighInputChange(event){
-   this.high = event.value;
-   console.log(this.high);
+    if(this.highEnd <= this.lowEnd){
+      this.highEnd = this.lowEnd+1;
+    } else{
+   this.highEnd = event;
+ }
  }
 
  onLowInputChange(event){
-  this.low = event.value;
-  console.log(this.low);
+   if (event >= this.highEnd){
+     this.lowEnd = this.highEnd-1;
+   } else {
+  this.lowEnd = event;
+}
 }
 
   goToDetails(people){
